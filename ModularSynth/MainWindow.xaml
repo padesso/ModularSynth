@@ -8,6 +8,21 @@
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Grid>
-        <Label Content="{Binding TestString}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="startStopSinBtn"
+                Content="Start Stop Sin"
+                Command="{Binding StartStopSinCommand}"/>
+
     </Grid>
 </Window>
