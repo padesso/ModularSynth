@@ -3,14 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ModularSynth"
+        xmlns:local="clr-namespace:ModularSynth" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -28,23 +27,31 @@
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="1" Grid.Column="0">
-            
-            <Label Content="Frequency:"/>
 
-            <Slider x:Name="frequencySlider"                
+            <Label Content="Frequency:" Margin="10"/>
+
+            <Slider x:Name="frequencySlider"  Margin="10"               
                 Minimum="300" Maximum="10000"
                 Value="{Binding Frequency, Mode=TwoWay}"/>
 
-            <Label Content="Amplitude:"/>
+            <Label Content="Amplitude:" Margin="10"/>
 
-            <Slider x:Name="amplitudeSlider"                
+            <Slider x:Name="amplitudeSlider"  Margin="10"              
                 Minimum="0" Maximum="1"
                 Value="{Binding Amplitude, Mode=TwoWay}"/>
 
         </StackPanel>
-                    
+
+        <lvc:CartesianChart Series="{Binding WavePointSeriesCollection}" 
+                            LegendLocation="None" 
+                            Grid.Row="2" Grid.Column="0">
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Time"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Amplitude"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
         
-
-
     </Grid>
 </Window>
