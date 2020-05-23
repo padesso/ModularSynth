@@ -34,10 +34,11 @@ namespace ModularSynth.ViewModels
 
             //Test Chart
             WavePointSeriesCollection = new SeriesCollection();
-            IChartValues sineValues = new ChartValues<float>();
+            IChartValues sineValues = new ChartValues<float>(sineWaveProvider.GetAmplitudes());
+
             WavePointSeriesCollection.Add(new LineSeries
             {
-                Values = new ChartValues<double> { 5, 3, 2, 4 },
+                Values = sineValues,
                 LineSmoothness = 0.5, //0: straight lines, 1: really smooth lines
                 PointGeometry = DefaultGeometries.None,
                 PointForeground = Brushes.LightBlue
