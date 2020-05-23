@@ -21,8 +21,30 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="startStopSinBtn"
+                Grid.Column="0" Grid.Row="0"
+                Margin="10"
                 Content="Start Stop Sin"
                 Command="{Binding StartStopSinCommand}"/>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1" Grid.Column="0">
+            
+            <Label Content="Frequency:"/>
+
+            <Slider x:Name="frequencySlider"                
+                Minimum="300" Maximum="10000"
+                Value="{Binding Frequency, Mode=TwoWay}"/>
+
+            <Label Content="Amplitude:"/>
+
+            <Slider x:Name="amplitudeSlider"                
+                Minimum="0" Maximum="1"
+                Value="{Binding Amplitude, Mode=TwoWay}"/>
+
+        </StackPanel>
+                    
+        
+
 
     </Grid>
 </Window>
