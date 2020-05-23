@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModularSynth"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" 
+        DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Grid>
-
+        <Label Content="{Binding TestString}"/>
     </Grid>
 </Window>
