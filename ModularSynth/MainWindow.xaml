@@ -46,10 +46,10 @@
                             LegendLocation="None" 
                             Grid.Row="2" Grid.Column="0">
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Time"></lvc:Axis>
+                <lvc:Axis Title="Amplitude"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Amplitude"></lvc:Axis>
+                <lvc:Axis Title="Time"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
         

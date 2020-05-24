@@ -33,8 +33,30 @@ namespace ModularSynth.ViewModels
             sineWaveProvider.Amplitude = Amplitude;
 
             //Test Chart
+            GenerateTestSineWave();
+            //WavePointSeriesCollection = new SeriesCollection();
+            //IChartValues sineValues = new ChartValues<float>(sineWaveProvider.GetAmplitudes());
+
+            //WavePointSeriesCollection.Add(new LineSeries
+            //{
+            //    Values = sineValues,
+            //    LineSmoothness = 0.5, //0: straight lines, 1: really smooth lines
+            //    PointGeometry = DefaultGeometries.None,
+            //    PointForeground = Brushes.LightBlue
+            //});
+        }
+
+        private void GenerateTestSineWave()
+        {
             WavePointSeriesCollection = new SeriesCollection();
-            IChartValues sineValues = new ChartValues<float>(sineWaveProvider.GetAmplitudes());
+            IChartValues sineValues = new ChartValues<float>();
+
+            for(float x = 0; x <= 360; x += 1)
+            {
+                //Tuple<float, float> point = new Tuple<float, float>(x, (float)Math.Sin(x));
+                float x_rad = (float)(x * (Math.PI)) / 180;
+                sineValues.Add((float)Math.Sin(x_rad));
+            }
 
             WavePointSeriesCollection.Add(new LineSeries
             {

@@ -33,11 +33,11 @@ namespace ModularSynth.WaveProviders
         public float[] GetAmplitudes()
         {
             int chartSample = 0;
-            float[] amps = new float[250];// WaveFormat.SampleRate];
+            float[] amps = new float[25];// WaveFormat.SampleRate];
 
-            for(int i = 0; i < 250; i++)
+            for(int i = 0; i < 25; i++)
             {
-                amps[i] = (float)(Amplitude * Math.Sin((2 * Math.PI * chartSample * Frequency) / 250));
+                amps[i] = (float)(Amplitude * Math.Sin((2 * Math.PI * chartSample * Frequency) / 25));
                 chartSample++;
             }
 
