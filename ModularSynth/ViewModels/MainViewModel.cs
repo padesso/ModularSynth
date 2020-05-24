@@ -26,8 +26,8 @@ namespace ModularSynth.ViewModels
             waveOut.Init(sineWaveProvider);
 
             //Start values
-            Frequency = 1000;
-            Amplitude = 0.25f;
+            Frequency = 5;
+            Amplitude = 2f;
 
             sineWaveProvider.Frequency = Frequency;
             sineWaveProvider.Amplitude = Amplitude;
@@ -51,11 +51,13 @@ namespace ModularSynth.ViewModels
             WavePointSeriesCollection = new SeriesCollection();
             IChartValues sineValues = new ChartValues<float>();
 
-            for(float x = 0; x <= 360; x += 1)
+            int samples = 360;
+            for(float x = 0; x <= samples; x += 1)
             {
                 //Tuple<float, float> point = new Tuple<float, float>(x, (float)Math.Sin(x));
-                float x_rad = (float)(x * (Math.PI)) / 180;
-                sineValues.Add((float)Math.Sin(x_rad));
+                float x_rad = (float)(Frequency * x * (Math.PI) / 180);
+                //float x_rad = (float)(Amplitude * Math.Sin((x * Math.PI / 180 * samples * Frequency)));
+                sineValues.Add((float)(Amplitude * (Math.Sin(x_rad))));
             }
 
             WavePointSeriesCollection.Add(new LineSeries
