@@ -54,9 +54,7 @@ namespace ModularSynth.ViewModels
             int samples = 360;
             for(float x = 0; x <= samples; x += 1)
             {
-                //Tuple<float, float> point = new Tuple<float, float>(x, (float)Math.Sin(x));
                 float x_rad = (float)(Frequency * x * (Math.PI) / 180);
-                //float x_rad = (float)(Amplitude * Math.Sin((x * Math.PI / 180 * samples * Frequency)));
                 sineValues.Add((float)(Amplitude * (Math.Sin(x_rad))));
             }
 
@@ -85,6 +83,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref frequency, value);
                 sineWaveProvider.Frequency = Frequency;
+                GenerateTestSineWave();
             }
         }
 
@@ -96,6 +95,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref amplitude, value);
                 sineWaveProvider.Amplitude = Amplitude;
+                GenerateTestSineWave();
             }
         }
 

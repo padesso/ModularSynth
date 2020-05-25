@@ -42,15 +42,15 @@
 
         </StackPanel>
 
-        <lvc:CartesianChart Series="{Binding WavePointSeriesCollection}" 
+        <lvc:CartesianChart Series="{Binding WavePointSeriesCollection, Mode=TwoWay}" 
                             LegendLocation="None" 
                             Grid.Row="2" Grid.Column="0">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Amplitude"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Time"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Amplitude"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>            
         </lvc:CartesianChart>
         
     </Grid>
