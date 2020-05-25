@@ -18,7 +18,7 @@ namespace ModularSynth.ViewModels
 
         public MainViewModel()
         {
-            StartStopSinCommand = new RelayCommand(StartStopSineWave);
+            StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
             sineWaveProvider = new SineWaveProvider32(); //TODO: pass initial freq and amplitude to ctor?  
             sineWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
@@ -69,7 +69,7 @@ namespace ModularSynth.ViewModels
 
         public SeriesCollection WavePointSeriesCollection { get; set; }
 
-        public RelayCommand StartStopSinCommand
+        public RelayCommand StartStopWaveCommand
         {
             get;
             private set;
@@ -99,7 +99,7 @@ namespace ModularSynth.ViewModels
             }
         }
 
-        private void StartStopSineWave()
+        private void StartPauseWave()
         {
             if (waveOut.PlaybackState == PlaybackState.Playing)
             {     

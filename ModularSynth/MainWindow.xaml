@@ -22,8 +22,8 @@
         <Button x:Name="startStopSinBtn"
                 Grid.Column="0" Grid.Row="0"
                 Margin="10"
-                Content="Start Stop Sin"
-                Command="{Binding StartStopSinCommand}"/>
+                Content="Start Stop Wave"
+                Command="{Binding StartStopWaveCommand}"/>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="1" Grid.Column="0">
