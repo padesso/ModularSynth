@@ -42,7 +42,9 @@ namespace ModularSynth.ViewModels
 
             WavePointSeriesCollection = new SeriesCollection();
             IChartValues waveValues = new ChartValues<float>();
-            
+
+            Random rand = new Random(DateTime.Now.Millisecond);
+
             int samples = 360;
             for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex += 1)
             {
@@ -58,9 +60,10 @@ namespace ModularSynth.ViewModels
                 //float x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
 
                 //Square
-                float x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
+                //float x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
 
-                //TODO: make some noize!
+                //Noize!
+                float x = (float)rand.NextDouble() * Amplitude;
 
                 waveValues.Add(x);
             }
