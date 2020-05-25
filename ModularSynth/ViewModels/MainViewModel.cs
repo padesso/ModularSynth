@@ -55,7 +55,12 @@ namespace ModularSynth.ViewModels
                 //float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
 
                 //Sawtooth
-                float x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
+                //float x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
+
+                //Square
+                float x = Math.Sign(Math.Sin(Math.PI * x_rad * Frequency)) * Amplitude;
+
+                //TODO: make some noize!
 
                 waveValues.Add(x);
             }
