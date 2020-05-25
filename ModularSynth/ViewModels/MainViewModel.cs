@@ -33,21 +33,13 @@ namespace ModularSynth.ViewModels
             sineWaveProvider.Amplitude = Amplitude;
 
             //Test Chart
-            GenerateTestSineWave();
-            //WavePointSeriesCollection = new SeriesCollection();
-            //IChartValues sineValues = new ChartValues<float>(sineWaveProvider.GetAmplitudes());
-
-            //WavePointSeriesCollection.Add(new LineSeries
-            //{
-            //    Values = sineValues,
-            //    LineSmoothness = 0.5, //0: straight lines, 1: really smooth lines
-            //    PointGeometry = DefaultGeometries.None,
-            //    PointForeground = Brushes.LightBlue
-            //});
+            GenerateTestWave();
         }
 
-        private void GenerateTestSineWave()
+        private void GenerateTestWave()
         {
+            //TODO: handle different types of waves
+
             WavePointSeriesCollection = new SeriesCollection();
             IChartValues sineValues = new ChartValues<float>();
 
@@ -67,7 +59,15 @@ namespace ModularSynth.ViewModels
             });
         }
 
-        public SeriesCollection WavePointSeriesCollection { get; set; }
+        private SeriesCollection wavePointSeriesCollection;
+        public SeriesCollection WavePointSeriesCollection 
+        {
+            get => wavePointSeriesCollection;
+            set
+            {
+                Set(ref wavePointSeriesCollection, value);
+            }
+        }
 
         public RelayCommand StartStopWaveCommand
         {
@@ -83,7 +83,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref frequency, value);
                 sineWaveProvider.Frequency = Frequency;
-                GenerateTestSineWave();
+                GenerateTestWave();
             }
         }
 
@@ -95,7 +95,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref amplitude, value);
                 sineWaveProvider.Amplitude = Amplitude;
-                GenerateTestSineWave();
+                GenerateTestWave();
             }
         }
 
