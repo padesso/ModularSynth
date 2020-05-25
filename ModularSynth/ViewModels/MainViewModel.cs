@@ -14,23 +14,23 @@ namespace ModularSynth.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private WaveOut waveOut;
-        private SineWaveProvider32 sineWaveProvider;
+        private WaveformWaveProvider waveformWaveProvider;
 
         public MainViewModel()
         {
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
-            sineWaveProvider = new SineWaveProvider32(); //TODO: pass initial freq and amplitude to ctor?  
-            sineWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
+            waveformWaveProvider = new WaveformWaveProvider(Waveform.Sine); 
+            waveformWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
             waveOut = new WaveOut();
-            waveOut.Init(sineWaveProvider);
+            waveOut.Init(waveformWaveProvider);
 
             //Start values
             Frequency = 2;
             Amplitude = 2f;
 
-            sineWaveProvider.Frequency = Frequency;
-            sineWaveProvider.Amplitude = Amplitude;
+            waveformWaveProvider.Frequency = Frequency;
+            waveformWaveProvider.Amplitude = Amplitude;
 
             //Test Chart
             GenerateWave();
@@ -100,7 +100,7 @@ namespace ModularSynth.ViewModels
             set
             {
                 Set(ref frequency, value);
-                sineWaveProvider.Frequency = Frequency;
+                waveformWaveProvider.Frequency = Frequency;
                 GenerateWave();
             }
         }
@@ -112,7 +112,7 @@ namespace ModularSynth.ViewModels
             set
             {
                 Set(ref amplitude, value);
-                sineWaveProvider.Amplitude = Amplitude;
+                waveformWaveProvider.Amplitude = Amplitude;
                 GenerateWave();
             }
         }
