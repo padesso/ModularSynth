@@ -26,33 +26,40 @@ namespace ModularSynth.ViewModels
             waveOut.Init(sineWaveProvider);
 
             //Start values
-            Frequency = 5;
+            Frequency = 1;
             Amplitude = 2f;
 
             sineWaveProvider.Frequency = Frequency;
             sineWaveProvider.Amplitude = Amplitude;
 
             //Test Chart
-            GenerateTestWave();
+            GenerateWave();
         }
 
-        private void GenerateTestWave()
+        private void GenerateWave()
         {
-            //TODO: handle different types of waves
+            //TODO: handle different types of waves and proper number of samples and all the hard stuff...
 
             WavePointSeriesCollection = new SeriesCollection();
-            IChartValues sineValues = new ChartValues<float>();
-
+            IChartValues waveValues = new ChartValues<float>();
+            
             int samples = 360;
-            for(float x = 0; x <= samples; x += 1)
+            for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex += 1)
             {
-                float x_rad = (float)(Frequency * x * (Math.PI) / 180);
-                sineValues.Add((float)(Amplitude * (Math.Sin(x_rad))));
+                float x_rad = (float)(sampleIndex * (Math.PI) / 180.0);
+
+                //Sine
+                //float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
+
+                //Triangle
+                float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
+
+                waveValues.Add(x);
             }
 
             WavePointSeriesCollection.Add(new LineSeries
             {
-                Values = sineValues,
+                Values = waveValues,
                 LineSmoothness = 0.5, //0: straight lines, 1: really smooth lines
                 PointGeometry = DefaultGeometries.None,
                 PointForeground = Brushes.LightBlue
@@ -83,7 +90,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref frequency, value);
                 sineWaveProvider.Frequency = Frequency;
-                GenerateTestWave();
+                GenerateWave();
             }
         }
 
@@ -95,7 +102,7 @@ namespace ModularSynth.ViewModels
             {
                 Set(ref amplitude, value);
                 sineWaveProvider.Amplitude = Amplitude;
-                GenerateTestWave();
+                GenerateWave();
             }
         }
 

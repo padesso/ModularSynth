@@ -34,7 +34,8 @@
             </StackPanel>
             
             <Slider x:Name="frequencySlider"  Margin="10"               
-                Minimum="300" Maximum="10000"
+                Minimum="1" Maximum="10000"
+                
                 Value="{Binding Frequency, Mode=TwoWay}"/>
 
             <StackPanel Orientation="Horizontal" Margin="10">
@@ -43,7 +44,7 @@
             </StackPanel>
             
             <Slider x:Name="amplitudeSlider"  Margin="10"              
-                Minimum="0" Maximum="1"
+                Minimum="0" Maximum="10"
                 Value="{Binding Amplitude, Mode=TwoWay}"/>
 
         </StackPanel>
@@ -52,10 +53,10 @@
                             LegendLocation="None" 
                             Grid.Row="2" Grid.Column="0">
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Time"></lvc:Axis>
+                <lvc:Axis Title="Time" MinValue="0" MaxValue="360" ShowLabels="False"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Amplitude"></lvc:Axis>
+                <lvc:Axis Title="Amplitude" ShowLabels="True"></lvc:Axis>
             </lvc:CartesianChart.AxisY>            
         </lvc:CartesianChart>
         
