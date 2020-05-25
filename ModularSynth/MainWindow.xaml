@@ -49,7 +49,7 @@
 
         </StackPanel>
 
-        <lvc:CartesianChart Series="{Binding WavePointSeriesCollection, Mode=TwoWay}" 
+        <lvc:CartesianChart Series="{Binding WavePointSeriesCollection, Mode=TwoWay}"                           
                             LegendLocation="None" 
                             Grid.Row="2" Grid.Column="0">
             <lvc:CartesianChart.AxisX>

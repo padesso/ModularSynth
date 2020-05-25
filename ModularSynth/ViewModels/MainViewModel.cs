@@ -49,10 +49,10 @@ namespace ModularSynth.ViewModels
                 float x_rad = (float)(sampleIndex * (Math.PI) / 180.0);
 
                 //Sine
-                //float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
+                float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
 
                 //Triangle
-                float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
+                //float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
 
                 waveValues.Add(x);
             }
@@ -60,7 +60,7 @@ namespace ModularSynth.ViewModels
             WavePointSeriesCollection.Add(new LineSeries
             {
                 Values = waveValues,
-                LineSmoothness = 0.5, //0: straight lines, 1: really smooth lines
+                LineSmoothness = 0.0, //0: straight lines, 1: really smooth lines
                 PointGeometry = DefaultGeometries.None,
                 PointForeground = Brushes.LightBlue
             });
