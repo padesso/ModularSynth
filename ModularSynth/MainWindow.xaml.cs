@@ -27,6 +27,6 @@ namespace ModularSynth
         public MainWindow()
         {
             InitializeComponent();
-        }        
+        }
     }
 }

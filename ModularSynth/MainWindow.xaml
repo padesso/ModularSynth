@@ -28,14 +28,20 @@
         <StackPanel Orientation="Vertical"
                     Grid.Row="1" Grid.Column="0">
 
-            <Label Content="Frequency:" Margin="10"/>
-
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Content="Frequency:"/>
+                <Label Content="{Binding Frequency}"/>
+            </StackPanel>
+            
             <Slider x:Name="frequencySlider"  Margin="10"               
                 Minimum="300" Maximum="10000"
                 Value="{Binding Frequency, Mode=TwoWay}"/>
 
-            <Label Content="Amplitude:" Margin="10"/>
-
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <Label Content="Amplitude:"/>
+                <Label Content="{Binding Amplitude}"/>
+            </StackPanel>
+            
             <Slider x:Name="amplitudeSlider"  Margin="10"              
                 Minimum="0" Maximum="1"
                 Value="{Binding Amplitude, Mode=TwoWay}"/>
