@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ModularSynth.Modules
 {
-    public class Oscillator
+    public interface IOscillate
     {
     }
 }
