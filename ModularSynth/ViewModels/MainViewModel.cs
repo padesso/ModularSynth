@@ -20,7 +20,7 @@ namespace ModularSynth.ViewModels
         {
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
-            waveformWaveProvider = new WaveformWaveProvider(Waveform.Sawtooth); 
+            waveformWaveProvider = new WaveformWaveProvider(Waveform.Square); 
             waveformWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
             waveOut = new WaveOut();
             waveOut.Init(waveformWaveProvider);
@@ -58,10 +58,10 @@ namespace ModularSynth.ViewModels
 
                 //Sawtooth
                 //float x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
-                float x = (float)(Amplitude * (Frequency * x_rad) % 1);
+                //float x = (float)(Amplitude * (Frequency * x_rad) % 1);
 
                 //Square
-                //float x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
+                float x = (float)(Amplitude * Math.Sign(Math.Sin((2 * Math.PI * Frequency) * x_rad)));
 
                 //Noize!
                 //float x = (float)rand.NextDouble() * Amplitude;

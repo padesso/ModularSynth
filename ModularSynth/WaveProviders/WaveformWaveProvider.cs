@@ -79,7 +79,7 @@ namespace ModularSynth.WaveProviders
                     break;
 
                 case Waveform.Square:
-                    x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
+                    x = (float)(Amplitude * Math.Sign(Math.Sin((2 * Math.PI * Frequency) * sample / sampleRate)));
                     break;
 
                 case Waveform.Noise:
