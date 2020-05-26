@@ -70,7 +70,7 @@ namespace ModularSynth.WaveProviders
                     break;
 
                 case Waveform.Triangle:
-                    x = (float)(Amplitude * ((Math.Abs(((Frequency * sample) % 4) - 2) - 1) / sampleRate));
+                    x = (float)(Amplitude * ((Math.Abs(((Frequency * sample / sampleRate) % 4) - 2) - 1)));
                     break;
 
                 case Waveform.Sawtooth:

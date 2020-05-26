@@ -20,7 +20,7 @@ namespace ModularSynth.ViewModels
         {
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
-            waveformWaveProvider = new WaveformWaveProvider(Waveform.Sine); 
+            waveformWaveProvider = new WaveformWaveProvider(Waveform.Triangle); 
             waveformWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
             waveOut = new WaveOut();
             waveOut.Init(waveformWaveProvider);
