@@ -74,7 +74,8 @@ namespace ModularSynth.WaveProviders
                     break;
 
                 case Waveform.Sawtooth:
-                    x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
+                    //x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan(((sample / sampleRate) / Frequency))));
+                    x = (float)(Amplitude * (Frequency * sample / sampleRate) % 1);
                     break;
 
                 case Waveform.Square:
