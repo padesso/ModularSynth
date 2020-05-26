@@ -48,7 +48,7 @@ namespace ModularSynth.ViewModels
             int samples = 360;
             for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex += 1)
             {
-                float x_rad = (float)(sampleIndex * (Math.PI) / 180.0);
+                float x_rad = (float)(sampleIndex * Math.PI / 180.0);
 
                 //Sine
                 //float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));

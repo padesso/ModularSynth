@@ -16,7 +16,7 @@ namespace ModularSynth.WaveProviders
 
     public class WaveformWaveProvider : WaveProvider32
     {
-        
+        private Random rand = new Random(DateTime.Now.Millisecond);
         private int sample;
 
         public WaveformWaveProvider(Waveform waveform)
@@ -52,16 +52,43 @@ namespace ModularSynth.WaveProviders
                 //buffer[n + offset] = (float)(Amplitude * Math.Sin((2 * Math.PI * sample * Frequency) / sampleRate));
                 buffer[n + offset] = GetWaveValue(sample, sampleRate);
                 sample++;
-                if (sample >= sampleRate) sample = 0;
+                if (sample >= sampleRate) 
+                    sample = 0;
             }
             return sampleCount;
         }
 
         private float GetWaveValue(int sample, int sampleRate)
         {
-            float val = (float)(Amplitude * Math.Sin((2 * Math.PI * sample * Frequency) / sampleRate));
+            float x_rad = (float)(sample * (Math.PI) / 180.0);
+            float x = 0; //TODO: should we handle this differently?
 
-            return val;
+            switch (Waveform)
+            {
+                case Waveform.Sine:
+                    x = (float)(Amplitude * Math.Sin((2 * Math.PI * Frequency) * sample / sampleRate));
+                    break;
+
+                case Waveform.Triangle:
+                    x = (float)(Amplitude * ((Math.Abs(((Frequency * sample) % 4) - 2) - 1) / sampleRate));
+                    break;
+
+                case Waveform.Sawtooth:
+                    x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
+                    break;
+
+                case Waveform.Square:
+                    x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
+                    break;
+
+                case Waveform.Noise:
+                    x = (float)rand.NextDouble() * Amplitude;
+                    break;
+            }
+
+            //float val = (float)(Amplitude * Math.Sin((2 * Math.PI * sample * Frequency) / sampleRate));
+
+            return x;
         }
     }
 }
