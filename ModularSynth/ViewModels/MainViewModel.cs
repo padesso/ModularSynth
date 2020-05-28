@@ -2,11 +2,15 @@
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using LiveCharts.Wpf;
+using ModularSynth.Containers;
+using ModularSynth.Modules;
+using ModularSynth.Modules.Gates;
 using ModularSynth.WaveProviders;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ModularSynth.ViewModels
@@ -16,8 +20,16 @@ namespace ModularSynth.ViewModels
         private WaveOut waveOut;
         private WaveformWaveProvider waveformWaveProvider;
 
+        private ModuleContainer moduleContainer;
+
         public MainViewModel()
         {
+            moduleContainer = new ModuleContainer();
+
+            //TEST Modules
+            ButtonModule buttonModule = new ButtonModule();           
+            AddModule(buttonModule);
+
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
             waveformWaveProvider = new WaveformWaveProvider(Waveform.Square); 
@@ -34,6 +46,27 @@ namespace ModularSynth.ViewModels
 
             //Test Chart
             GenerateWave();
+        }
+
+        private UserControl modules;
+        public UserControl Modules
+        {
+            get => modules;
+            set
+            {
+                Set(ref modules, value);
+            }
+        }
+
+        private bool AddModule(ModuleBase module)
+        {
+            if(moduleContainer.AddModule(module))
+            {
+                //TODO: try to add module to UI but remove from module container if it fails to add and handle multiple items
+                Modules = module.UserControl;
+            }
+
+            return true;
         }
 
         private void GenerateWave()

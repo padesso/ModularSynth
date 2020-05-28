@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 
 namespace ModularSynth.Modules
 {
@@ -9,5 +10,7 @@ namespace ModularSynth.Modules
     {
         public List<Port> InputPorts;
         public List<Port> OutputPorts;
+        public abstract UserControl UserControl { get; }
+
     }
 }
