@@ -25,6 +25,7 @@ namespace ModularSynth.ViewModels
         public MainViewModel()
         {
             moduleContainer = new ModuleContainer();
+            Modules = new List<UserControl>();
 
             //TEST Modules
             ButtonModule buttonModule = new ButtonModule();           
@@ -48,8 +49,8 @@ namespace ModularSynth.ViewModels
             GenerateWave();
         }
 
-        private UserControl modules;
-        public UserControl Modules
+        private List<UserControl> modules;
+        public List<UserControl> Modules
         {
             get => modules;
             set
@@ -63,7 +64,7 @@ namespace ModularSynth.ViewModels
             if(moduleContainer.AddModule(module))
             {
                 //TODO: try to add module to UI but remove from module container if it fails to add and handle multiple items
-                Modules = module.UserControl;
+                Modules.Add(module.UserControl);
             }
 
             return true;

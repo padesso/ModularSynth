@@ -60,10 +60,10 @@
             </lvc:CartesianChart.AxisY>            
         </lvc:CartesianChart>
 
-        <ContentControl x:Name="modulesStackPanel"
+        <ListView x:Name="modulesStackPanel"
                     Grid.Row="0" Grid.RowSpan="3"
                     Grid.Column="1" Grid.ColumnSpan="2"
-                    Content="{Binding Modules, Mode=TwoWay}"/>
+                    ItemsSource="{Binding Modules, Mode=TwoWay}"/>
 
     </Grid>
 </Window>
