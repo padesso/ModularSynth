@@ -18,7 +18,7 @@ namespace ModularSynth.Modules.Gates
             OutputPorts.Add(outputPort);
         }
 
-        public override UserControl UserControl
+        public override ListViewItem ListViewItem
         {
             get
             {

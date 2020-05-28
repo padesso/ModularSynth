@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace ModularSynth.Controls
 {
     /// <summary>
-    /// Interaction logic for ButtonUserControl.xaml
+    /// Interaction logic for PortUserControl.xaml
     /// </summary>
-    public partial class ButtonUserControl : ListViewItem
+    public partial class PortUserControl : UserControl
     {
-        public ButtonUserControl()
+        public PortUserControl()
         {
             InitializeComponent();
         }

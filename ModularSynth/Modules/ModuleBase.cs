@@ -10,7 +10,7 @@ namespace ModularSynth.Modules
     {
         public List<Port> InputPorts;
         public List<Port> OutputPorts;
-        public abstract UserControl UserControl { get; }
+        public abstract ListViewItem ListViewItem { get; }
 
     }
 }
