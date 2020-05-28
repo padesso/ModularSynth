@@ -14,7 +14,7 @@ namespace ModularSynth.Modules.Gates
             InputPorts = new List<Components.Port>();
             OutputPorts = new List<Components.Port>();
 
-            Port outputPort = new Port("Signal Out", Port.PortType.ControlVoltagePort);
+            Port outputPort = new Port("Signal Out", Port.PortDirection.Out, Port.PortType.ControlVoltagePort);
             OutputPorts.Add(outputPort);
         }
 
