@@ -49,6 +49,17 @@ namespace ModularSynth.ViewModels
             GenerateWave();
         }
 
+        private bool wavePlaying;
+        public bool WavePlaying
+        {
+            get => wavePlaying;
+            set
+            {
+                Set(ref wavePlaying, value);
+                StartPauseWave();
+            }
+        }
+
         private List<ListViewItem> modules;
         public List<ListViewItem> Modules
         {
