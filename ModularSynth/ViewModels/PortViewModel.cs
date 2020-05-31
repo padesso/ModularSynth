@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using ModularSynth.Modules.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,18 +8,20 @@ namespace ModularSynth.ViewModels
 {
     public class PortViewModel : ViewModelBase
     {
+        private Port port;
+
         public PortViewModel()
         {
-            PortValue = 0.5f;
+            //TODO: Default port for now.
+            port = new Port("Test Port", Port.PortDirection.Out, Port.PortType.ControlVoltagePort, 1.0f);
         }
 
-        private float portValue;
         public float PortValue
         {
-            get => portValue;
+            get => port.Value;
             set
             {
-                Set(ref portValue, value);
+                Set(ref port.Value, value);
             }
         }
     }

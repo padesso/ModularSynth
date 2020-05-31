@@ -21,12 +21,14 @@ namespace ModularSynth.Modules.Components
         public string Name { get; set; }
         public PortDirection Direction { get; set; }
         public PortType Type { get; set; }
-        
-        public Port(string name, PortDirection portDirection, PortType portType)
+        public float Value;
+
+        public Port(string name, PortDirection portDirection, PortType portType, float initialValue = 0f)
         {
             Name = name;
             Direction = portDirection;
             Type = portType;
+            Value = initialValue;
         }
 
         public Port()
@@ -34,6 +36,7 @@ namespace ModularSynth.Modules.Components
             Name = "Default";
             Direction = PortDirection.Out;
             Type = PortType.ControlVoltagePort;
+            Value = 0f;
         }
     }
 }
