@@ -43,6 +43,7 @@ namespace ModularSynth
 
             // Register all ViewModels.
             services.AddSingleton<MainViewModel>();
+            services.AddScoped<PortViewModel>();  //Want this to create/die as control is added/removed
 
             // Register all the Windows of the applications.
             services.AddTransient<MainWindow>();

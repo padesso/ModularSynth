@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ModularSynth.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="75"> 
+             d:DesignHeight="75" d:DesignWidth="75"
+             DataContext="{Binding Source={StaticResource Locator}, Path=PortViewModel}"> 
 
     <Grid>
     <!--TODO: Create a converter to control color based on type and direction-->
@@ -16,7 +17,7 @@
             VerticalAlignment="Top"
             HorizontalAlignment="Center"/>
 
-        <Label Content="Port name..."
+        <Label Content="{Binding PortValue}"
                VerticalAlignment="Bottom"
                HorizontalAlignment="Center"/>
     </Grid>
