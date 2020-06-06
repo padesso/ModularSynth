@@ -14,16 +14,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="startStopSinBtn"
+        <ToggleButton x:Name="startStopSinBtn"
                 Grid.Column="0" Grid.Row="0"
                 Margin="10"
                 Content="Start Stop Wave"
-                Command="{Binding StartStopWaveCommand}"/>
+                IsChecked="{Binding WavePlaying}"/>
 
         <StackPanel Orientation="Vertical"
                     Grid.Row="1" Grid.Column="0">
@@ -59,6 +59,19 @@
                 <lvc:Axis Title="Amplitude" ShowLabels="True"></lvc:Axis>
             </lvc:CartesianChart.AxisY>            
         </lvc:CartesianChart>
-        
+
+        <ListView x:Name="modulesStackPanel"
+                    Grid.Row="0" Grid.RowSpan="3"
+                    Grid.Column="1" Grid.ColumnSpan="2"
+                    ItemsSource="{Binding Modules, Mode=TwoWay}">
+            
+            <!--<ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="250" />
+                </Style>
+            </ListView.ItemContainerStyle>-->
+
+        </ListView>
+
     </Grid>
 </Window>

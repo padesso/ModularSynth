@@ -2,11 +2,15 @@
 using GalaSoft.MvvmLight.Command;
 using LiveCharts;
 using LiveCharts.Wpf;
+using ModularSynth.Containers;
+using ModularSynth.Modules;
+using ModularSynth.Modules.Gates;
 using ModularSynth.WaveProviders;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace ModularSynth.ViewModels
@@ -16,17 +20,26 @@ namespace ModularSynth.ViewModels
         private WaveOut waveOut;
         private WaveformWaveProvider waveformWaveProvider;
 
+        private ModuleContainer moduleContainer;
+
         public MainViewModel()
         {
+            moduleContainer = new ModuleContainer();
+            Modules = new List<ListViewItem>();
+
+            //TEST Modules
+            ButtonModule buttonModule = new ButtonModule();           
+            AddModule(buttonModule);
+
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
-            waveformWaveProvider = new WaveformWaveProvider(Waveform.Sine); 
+            waveformWaveProvider = new WaveformWaveProvider(Waveform.Square); 
             waveformWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
             waveOut = new WaveOut();
             waveOut.Init(waveformWaveProvider);
 
             //Start values
-            Frequency = 2;
+            Frequency = 440;
             Amplitude = 2f;
 
             waveformWaveProvider.Frequency = Frequency;
@@ -34,6 +47,38 @@ namespace ModularSynth.ViewModels
 
             //Test Chart
             GenerateWave();
+        }
+
+        private bool wavePlaying;
+        public bool WavePlaying
+        {
+            get => wavePlaying;
+            set
+            {
+                Set(ref wavePlaying, value);
+                StartPauseWave();
+            }
+        }
+
+        private List<ListViewItem> modules;
+        public List<ListViewItem> Modules
+        {
+            get => modules;
+            set
+            {
+                Set(ref modules, value);
+            }
+        }
+
+        private bool AddModule(ModuleBase module)
+        {
+            if(moduleContainer.AddModule(module))
+            {
+                //TODO: try to add module to UI but remove from module container if it fails to add and handle multiple items
+                Modules.Add(module.ListViewItem);
+            }
+
+            return true;
         }
 
         private void GenerateWave()
@@ -48,22 +93,23 @@ namespace ModularSynth.ViewModels
             int samples = 360;
             for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex += 1)
             {
-                float x_rad = (float)(sampleIndex * (Math.PI) / 180.0);
+                float x_rad = (float)(sampleIndex * Math.PI / 180.0);
 
                 //Sine
-                //float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
+                float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
 
                 //Triangle
                 //float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
 
                 //Sawtooth
                 //float x = (float)(-1 * ((Amplitude * 2) / Math.PI) * Math.Atan(1 / Math.Tan((x_rad * Math.PI / Frequency))));
+                //float x = (float)(Amplitude * (Frequency * x_rad) % 1);
 
                 //Square
-                //float x = (float)(Math.Sign(Math.Sin(Frequency * x_rad)) * Amplitude);
+                //float x = (float)(Amplitude * Math.Sign(Math.Sin((2 * Math.PI * Frequency) * x_rad)));
 
                 //Noize!
-                float x = (float)rand.NextDouble() * Amplitude;
+                //float x = (float)rand.NextDouble() * Amplitude;
 
                 waveValues.Add(x);
             }
