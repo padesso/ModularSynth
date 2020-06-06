@@ -39,7 +39,7 @@ namespace ModularSynth.ViewModels
             waveOut.Init(waveformWaveProvider);
 
             //Start values
-            Frequency = 2;
+            Frequency = 440;
             Amplitude = 2f;
 
             waveformWaveProvider.Frequency = Frequency;
@@ -96,7 +96,7 @@ namespace ModularSynth.ViewModels
                 float x_rad = (float)(sampleIndex * Math.PI / 180.0);
 
                 //Sine
-                //float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
+                float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
 
                 //Triangle
                 //float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
@@ -106,7 +106,7 @@ namespace ModularSynth.ViewModels
                 //float x = (float)(Amplitude * (Frequency * x_rad) % 1);
 
                 //Square
-                float x = (float)(Amplitude * Math.Sign(Math.Sin((2 * Math.PI * Frequency) * x_rad)));
+                //float x = (float)(Amplitude * Math.Sign(Math.Sin((2 * Math.PI * Frequency) * x_rad)));
 
                 //Noize!
                 //float x = (float)rand.NextDouble() * Amplitude;
