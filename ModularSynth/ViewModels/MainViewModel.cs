@@ -5,8 +5,8 @@ using LiveCharts.Wpf;
 using ModularSynth.Containers;
 using ModularSynth.Modules;
 using ModularSynth.Modules.Gates;
-using ModularSynth.WaveProviders;
 using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,12 +18,23 @@ namespace ModularSynth.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private WaveOut waveOut;
-        private WaveformWaveProvider waveformWaveProvider;
 
         private ModuleContainer moduleContainer;
 
+        private SignalGenerator signalGenerator;
+
         public MainViewModel()
         {
+            //SIGNAL GENERATOR TEST
+            signalGenerator = new SignalGenerator(); //Leave default for now but add option to change...  maybe globally?
+            signalGenerator.Frequency = Frequency;
+            signalGenerator.Gain = Amplitude;
+            signalGenerator.Type = SignalGeneratorType.Sin;
+
+            //Wave player - TODO: move to mixer module or something
+            waveOut = new WaveOut();
+            waveOut.Init(signalGenerator);
+
             moduleContainer = new ModuleContainer();
             Modules = new List<ListViewItem>();
 
@@ -33,20 +44,12 @@ namespace ModularSynth.ViewModels
 
             StartStopWaveCommand = new RelayCommand(StartPauseWave);
 
-            waveformWaveProvider = new WaveformWaveProvider(Waveform.Square); 
-            waveformWaveProvider.SetWaveFormat(16000, 1); // 16kHz mono
-            waveOut = new WaveOut();
-            waveOut.Init(waveformWaveProvider);
-
             //Start values
             Frequency = 440;
             Amplitude = 2f;
 
-            waveformWaveProvider.Frequency = Frequency;
-            waveformWaveProvider.Amplitude = Amplitude;
-
             //Test Chart
-            GenerateWave();
+            RenderWave();
         }
 
         private bool wavePlaying;
@@ -81,22 +84,31 @@ namespace ModularSynth.ViewModels
             return true;
         }
 
-        private void GenerateWave()
+        private IChartValues waveValues;
+
+        private void RenderWave()
         {
             //TODO: handle different types of waves and proper number of samples and all the hard stuff...
 
             WavePointSeriesCollection = new SeriesCollection();
-            IChartValues waveValues = new ChartValues<float>();
+            if (waveValues == null)
+            {
+                waveValues = new ChartValues<float>();
+            }
+            else
+            {
+                waveValues.Clear();
+            }
 
             Random rand = new Random(DateTime.Now.Millisecond);
 
             int samples = 360;
-            for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex += 1)
+            for(float sampleIndex = 0; sampleIndex <= samples; sampleIndex++)
             {
                 float x_rad = (float)(sampleIndex * Math.PI / 180.0);
 
                 //Sine
-                float x = (float)(Amplitude * Math.Sin(Frequency * x_rad));
+                float y = (float)(Amplitude * Math.Sin(Frequency * x_rad));
 
                 //Triangle
                 //float x = (float)( (Math.Abs( ((Frequency * sampleIndex) % 4) - 2) - 1) * Amplitude);
@@ -111,7 +123,7 @@ namespace ModularSynth.ViewModels
                 //Noize!
                 //float x = (float)rand.NextDouble() * Amplitude;
 
-                waveValues.Add(x);
+                waveValues.Add(y);
             }
 
             WavePointSeriesCollection.Add(new LineSeries
@@ -146,8 +158,8 @@ namespace ModularSynth.ViewModels
             set
             {
                 Set(ref frequency, value);
-                waveformWaveProvider.Frequency = Frequency;
-                GenerateWave();
+                signalGenerator.Frequency = Frequency;
+                RenderWave();
             }
         }
 
@@ -158,8 +170,8 @@ namespace ModularSynth.ViewModels
             set
             {
                 Set(ref amplitude, value);
-                waveformWaveProvider.Amplitude = Amplitude;
-                GenerateWave();
+                signalGenerator.Gain = Amplitude;
+                RenderWave();
             }
         }
 
