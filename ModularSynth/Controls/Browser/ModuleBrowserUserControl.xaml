@@ -10,22 +10,15 @@
     <Grid>
         <ListView 
             BorderBrush="DarkGray" BorderThickness="1"
-            Background="LightGray">
-            <ItemsControl ItemsSource="{Binding Modules}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <Label Content="{Binding Name}" FontSize="14"/>
-                            <Label Content="{Binding Description}" FontSize="10"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
+            Background="LightGray"
+            ItemsSource="{Binding Modules}"
+            SelectedItem="{Binding SelectedModule}">
+            <!--<DataTemplate>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="{Binding Name}" FontSize="14"/>
+                    <Label Content="{Binding Description}" FontSize="10"/>
+                </StackPanel>
+            </DataTemplate>-->
         </ListView>
     </Grid>
 </UserControl>

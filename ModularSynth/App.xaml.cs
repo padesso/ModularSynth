@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ModularSynth.Services.Modules;
 using ModularSynth.ViewModels;
 using ModularSynth.ViewModels.Browser;
 using ModularSynth.ViewModels.Rack;
@@ -42,6 +43,7 @@ namespace ModularSynth
 
             //Register services here!
             //services.AddScoped<ICustomerService, CustomerService>();
+            services.AddSingleton<IModuleService, ModuleService>();
 
             // Register all ViewModels.
             services.AddSingleton<MainViewModel>();
