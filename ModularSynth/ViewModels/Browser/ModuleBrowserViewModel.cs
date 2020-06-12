@@ -40,7 +40,6 @@ namespace ModularSynth.ViewModels.Browser
             set
             {
                 Set(ref selectedModule, value);
-                modServ.AddModule(SelectedModule);
             }
         }
     }

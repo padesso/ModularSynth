@@ -11,16 +11,11 @@ namespace ModularSynth.Services.Modules
 
         public ModuleService()
         {
-            //TODO: load from save
+            //TODO: load from disk/web/etc for modules that are available
             modules = new List<ModuleBase>();
         }
 
-        public void AddModule(ModuleBase module)
-        {
-            modules.Add(module);
-        }
-
-        public List<ModuleBase> GetModules()
+        public List<ModuleBase> GetAvailableModules()
         {
             return modules;
         }

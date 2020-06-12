@@ -13,12 +13,14 @@
             Background="LightGray"
             ItemsSource="{Binding Modules}"
             SelectedItem="{Binding SelectedModule}">
-            <!--<DataTemplate>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="{Binding Name}" FontSize="14"/>
-                    <Label Content="{Binding Description}" FontSize="10"/>
-                </StackPanel>
-            </DataTemplate>-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding Name}" FontSize="14"/>
+                        <Label Content="{Binding Description}" FontSize="10"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </UserControl>

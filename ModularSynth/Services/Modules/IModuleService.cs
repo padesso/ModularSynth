@@ -7,7 +7,6 @@ namespace ModularSynth.Services.Modules
 {
     public interface IModuleService
     {
-        public List<ModuleBase> GetModules();
-        public void AddModule(ModuleBase module);
+        public List<ModuleBase> GetAvailableModules();
     }
 }

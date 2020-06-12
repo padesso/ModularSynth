@@ -19,7 +19,7 @@ namespace ModularSynth.ViewModels.Rack
 
         public List<ModuleBase> Modules
         {
-            get => modServ.GetModules();
+            get => modServ.GetAvailableModules();
             //set
             //{
             //    Set(ref modules, value);
