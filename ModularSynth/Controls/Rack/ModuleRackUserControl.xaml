@@ -8,6 +8,18 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding Source={StaticResource Locator}, Path=ModuleRackViewModel}">
     <Grid>
-            
+        <ListView 
+            BorderBrush="DarkGray" BorderThickness="1"
+            Background="LightGray"
+            ItemsSource="{Binding Modules}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding Name}" FontSize="14"/>
+                        <Label Content="{Binding Description}" FontSize="10"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>
