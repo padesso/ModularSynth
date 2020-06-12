@@ -1,5 +1,5 @@
-﻿using ModularSynth.Controls;
-using ModularSynth.Modules.Components;
+﻿using ModularSynth.Components;
+using ModularSynth.Controls;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,8 +13,8 @@ namespace ModularSynth.Modules.Gates
         {
             Name = name;
             Description = description;
-            InputPorts = new List<Components.Port>();
-            OutputPorts = new List<Components.Port>();
+            InputPorts = new List<Port>();
+            OutputPorts = new List<Port>();
 
             Port outputPort = new Port("Signal Out", Port.PortDirection.Out, Port.PortType.ControlVoltagePort);
             OutputPorts.Add(outputPort);

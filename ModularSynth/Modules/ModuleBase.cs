@@ -1,4 +1,4 @@
-﻿using ModularSynth.Modules.Components;
+﻿using ModularSynth.Components;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ModularSynth.Modules.Components
+namespace ModularSynth.Components
 {
     public class Port
     {

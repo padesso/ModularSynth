@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModularSynth.ViewModels;
+using ModularSynth.ViewModels.Browser;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
