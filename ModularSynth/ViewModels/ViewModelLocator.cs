@@ -9,5 +9,6 @@ namespace ModularSynth.ViewModels
     {       
         public MainViewModel MainViewModel => App.ServiceProvider.GetRequiredService<MainViewModel>();
         public PortViewModel PortViewModel => App.ServiceProvider.GetRequiredService<PortViewModel>();
+        public ModuleBrowserViewModel ModuleBrowserViewModel => App.ServiceProvider.GetRequiredService<ModuleBrowserViewModel>();
     }
 }

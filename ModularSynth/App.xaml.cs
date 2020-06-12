@@ -43,6 +43,7 @@ namespace ModularSynth
 
             // Register all ViewModels.
             services.AddSingleton<MainViewModel>();
+            services.AddSingleton<ModuleBrowserViewModel>();
 
             services.AddTransient<SignalGeneratorViewModel>();
             services.AddTransient<PortViewModel>();  //Want this to create/die as control is added/removed

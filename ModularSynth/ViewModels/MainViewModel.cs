@@ -18,37 +18,9 @@ namespace ModularSynth.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private ModuleContainer moduleContainer;
-
         public MainViewModel()
         {
-            moduleContainer = new ModuleContainer();
-            Modules = new List<ModuleBase>();
 
-            //TEST Modules
-            ButtonModule buttonModule = new ButtonModule("Test Button", "Just a test module with a button");           
-            AddModule(buttonModule);
-        }
-
-        private List<ModuleBase> modules;
-        public List<ModuleBase> Modules
-        {
-            get => modules;
-            set
-            {
-                Set(ref modules, value);
-            }
-        }
-
-        private bool AddModule(ModuleBase module)
-        {
-            if(moduleContainer.AddModule(module))
-            {
-                //TODO: try to add module to UI but remove from module container if it fails to add and handle multiple items
-                Modules.Add(module);
-            }
-
-            return true;
         }
     }
 }
