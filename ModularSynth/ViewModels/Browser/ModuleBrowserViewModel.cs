@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using ModularSynth.Modules;
 using ModularSynth.Modules.Gates;
 using ModularSynth.Services.Modules;
+using ModularSynth.Services.Rack;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,10 +13,12 @@ namespace ModularSynth.ViewModels.Browser
     public class ModuleBrowserViewModel : ViewModelBase
     {
         private IModuleService modServ;
+        private IRackService rackServ;
 
-        public ModuleBrowserViewModel(IModuleService moduleService)
+        public ModuleBrowserViewModel(IModuleService moduleService, IRackService rackService)
         {
             modServ = moduleService;
+            rackServ = rackService;
 
             //TOOD: update module service so we have ability to load distinct modules as well as those in the rack
             ButtonModule buttonModule = new ButtonModule("Test Button", "Just a test module with a button");
@@ -40,6 +43,7 @@ namespace ModularSynth.ViewModels.Browser
             set
             {
                 Set(ref selectedModule, value);
+                rackServ.AddModuleToRack(SelectedModule);
             }
         }
     }

@@ -2,28 +2,30 @@
 using GalaSoft.MvvmLight.Messaging;
 using ModularSynth.Modules;
 using ModularSynth.Services.Modules;
+using ModularSynth.Services.Rack;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace ModularSynth.ViewModels.Rack
 {
     public class ModuleRackViewModel : ViewModelBase
     {
-        private IModuleService modServ;
+        private RackService rackServ;
 
-        public ModuleRackViewModel(IModuleService moduleService)
+        public ModuleRackViewModel(IRackService rackService)
         {
-            modServ = moduleService;
+            rackServ = (RackService)rackService;
         }
 
-        public List<ModuleBase> Modules
+        public ObservableCollection<ModuleBase> Modules
         {
-            get => modServ.GetAvailableModules();
-            //set
-            //{
-            //    Set(ref modules, value);
-            //}
+            get => rackServ.Modules;
+            set
+            {
+                Set(ref rackServ.Modules, value);
+            }
         }
     }
 }
