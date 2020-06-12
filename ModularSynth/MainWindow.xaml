@@ -3,23 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ModularSynth" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:ModularSynth" 
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+        xmlns:toolbox="clr-namespace:ModularSynth.Controls.Browser"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
 
-        <ToggleButton x:Name="startStopSinBtn"
+        <toolbox:ModuleBrowserControl>
+            <ItemsControl ItemsSource="{Binding Modules}" Margin="20" Padding="20">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding Name}" Height="100"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
+        </toolbox:ModuleBrowserControl>
+        
+        <!--<ToggleButton x:Name="startStopSinBtn"
                 Grid.Column="0" Grid.Row="0"
                 Margin="10"
                 Content="Start Stop Wave"
@@ -64,14 +80,8 @@
                     Grid.Row="0" Grid.RowSpan="3"
                     Grid.Column="1" Grid.ColumnSpan="2"
                     ItemsSource="{Binding Modules, Mode=TwoWay}">
-            
-            <!--<ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Height" Value="250" />
-                </Style>
-            </ListView.ItemContainerStyle>-->
-
-        </ListView>
+  
+        </ListView>-->
 
     </Grid>
 </Window>

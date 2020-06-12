@@ -9,8 +9,9 @@ namespace ModularSynth.Modules.Gates
 {
     public class ButtonModule : ModuleBase
     {
-        public ButtonModule()
+        public ButtonModule(string name)
         {
+            Name = name;
             InputPorts = new List<Components.Port>();
             OutputPorts = new List<Components.Port>();
 
