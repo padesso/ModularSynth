@@ -9,25 +9,15 @@ namespace ModularSynth.Modules.Gates
 {
     public class ButtonModule : ModuleBase
     {
-        public ButtonModule(string name)
+        public ButtonModule(string name, string description)
         {
             Name = name;
+            Description = description;
             InputPorts = new List<Components.Port>();
             OutputPorts = new List<Components.Port>();
 
             Port outputPort = new Port("Signal Out", Port.PortDirection.Out, Port.PortType.ControlVoltagePort);
             OutputPorts.Add(outputPort);
-        }
-
-        public override ListViewItem ListViewItem
-        {
-            get
-            {
-                //TODO: design the UI of the module
-                ButtonUserControl buttonUserControl = new ButtonUserControl();
-
-                return buttonUserControl;
-            }
         }
     }
 }

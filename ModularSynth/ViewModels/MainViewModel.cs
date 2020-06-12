@@ -26,7 +26,7 @@ namespace ModularSynth.ViewModels
             Modules = new List<ModuleBase>();
 
             //TEST Modules
-            ButtonModule buttonModule = new ButtonModule("Test Button");           
+            ButtonModule buttonModule = new ButtonModule("Test Button", "Just a test module with a button");           
             AddModule(buttonModule);
         }
 

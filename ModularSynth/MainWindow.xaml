@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModularSynth" 
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
-        xmlns:toolbox="clr-namespace:ModularSynth.Controls.Browser"
+        xmlns:browser="clr-namespace:ModularSynth.Controls.Browser"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
@@ -19,11 +19,19 @@
 
         </Grid.ColumnDefinitions>
 
-        <toolbox:ModuleBrowserControl>
-            <ItemsControl ItemsSource="{Binding Modules}" Margin="20" Padding="20">
+        <browser:ModuleBrowserControl
+            Grid.Row="0" Grid.Column="0"
+            BorderBrush="DarkGray" BorderThickness="1"
+            Background="LightGray">
+
+            <!-- TOOD: move this into control UI -->
+            <ItemsControl ItemsSource="{Binding Modules}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding Name}" Height="100"/>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="{Binding Name}" FontSize="14"/>
+                            <Label Content="{Binding Description}" FontSize="10"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
@@ -33,8 +41,8 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
 
-        </toolbox:ModuleBrowserControl>
-        
+        </browser:ModuleBrowserControl>
+
         <!--<ToggleButton x:Name="startStopSinBtn"
                 Grid.Column="0" Grid.Row="0"
                 Margin="10"
