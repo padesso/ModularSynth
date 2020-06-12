@@ -13,8 +13,4 @@
     <PackageReference Include="NAudio" Version="1.10.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controls\Rack\" />
-  </ItemGroup>
-
 </Project>

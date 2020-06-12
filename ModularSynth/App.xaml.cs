@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ModularSynth.ViewModels;
 using ModularSynth.ViewModels.Browser;
+using ModularSynth.ViewModels.Rack;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -45,6 +46,7 @@ namespace ModularSynth
             // Register all ViewModels.
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<ModuleBrowserViewModel>();
+            services.AddSingleton<ModuleRackViewModel>();
 
             services.AddTransient<SignalGeneratorViewModel>();
             services.AddTransient<PortViewModel>();  //Want this to create/die as control is added/removed

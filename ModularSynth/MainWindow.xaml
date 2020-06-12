@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:browser="clr-namespace:ModularSynth.Controls.Browser"
+        xmlns:browser="clr-namespace:ModularSynth.Controls.Browser" xmlns:rack="clr-namespace:ModularSynth.Controls.Rack"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
@@ -17,9 +17,13 @@
 
         </Grid.ColumnDefinitions>
 
-        <browser:ModuleBrowserUserControl>
-            
+        <browser:ModuleBrowserUserControl
+            Grid.Row="0" Grid.Column="0">            
         </browser:ModuleBrowserUserControl>
+
+        <rack:ModuleRackUserControl
+            Grid.Row="0" Grid.Column="1">
+        </rack:ModuleRackUserControl>
         
         <!--<ToggleButton x:Name="startStopSinBtn"
                 Grid.Column="0" Grid.Row="0"
